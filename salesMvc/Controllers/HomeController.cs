@@ -8,6 +8,8 @@ namespace salesMvc.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["Teste"] = "isso é só um teste";
+
             return View();
         }
 
