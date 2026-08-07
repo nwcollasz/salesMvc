@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using salesMvc.Data;
+using salesMvc.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<salesMvcContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("salesMvcContext") ?? throw new InvalidOperationException("Connection string 'salesMvcContext' not found.")));
@@ -9,6 +11,7 @@ builder.Services.AddDbContext<salesMvcContext>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<SeedingService>();
+builder.Services.AddScoped<SellerService>();
 
 var app = builder.Build();
 
