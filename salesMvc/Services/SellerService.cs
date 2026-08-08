@@ -1,5 +1,6 @@
 ﻿using salesMvc.Data;
 using salesMvc.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace salesMvc.Services
 {
@@ -12,9 +13,15 @@ namespace salesMvc.Services
             _context = context;
         }
 
-        public List<Seller> FindAll()
+        public async Task<List<Seller>> FindAllAsync()
         {
-            return _context.Seller.ToList();
+            return await _context.Seller.ToListAsync();
+        }
+
+        public async Task InsertAsync(Seller obj)
+        {
+            _context.Add(obj);
+            await _context.SaveChangesAsync();
         }
     }
 }
